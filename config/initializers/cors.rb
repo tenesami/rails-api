@@ -10,7 +10,7 @@
 #and know from where the request is coming from and what type of request 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'example.com'
+    origins 'http://localhost'
 
     resource '*',
       headers: :any,
