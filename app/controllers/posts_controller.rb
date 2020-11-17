@@ -5,7 +5,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
-    render json: @posts
+    #uses the post serializer from serializer folder 
+    render json: PostSerializer.new(@posts)
   end
 
   # GET /posts/1
