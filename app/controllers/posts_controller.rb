@@ -5,8 +5,12 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
+    options = {
+    include: [:user]
+    }
+    
     #uses the post serializer from serializer folder 
-    render json: PostSerializer.new(@posts)
+    render json: PostSerializer.new(@posts, options)
   end
 
   # GET /posts/1
