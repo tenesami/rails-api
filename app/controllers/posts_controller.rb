@@ -5,6 +5,8 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
 
+    #pass the option parameter z serializer indicating that
+    #we want to include those objects
     options = {
     include: [:user]
     }
@@ -24,7 +26,13 @@ class PostsController < ApplicationController
     @post = @user.posts.new(post_params)
 
     if @post.save
-      render json: @post, status: :created, location: @post
+       options = {
+                  include: [:user]
+                  }
+    
+    #uses the post serializer from serializer folder 
+    render json: PostSerializer.new(@posts, options)
+
     else
 
       #notifay the speicfic error  
